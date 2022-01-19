@@ -18,20 +18,20 @@ public class PeopleApplication {
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(PeopleApplication.class, args);
-    PeopleApplication.iniatizeEmployeeList();
+    PeopleApplication.initializeEmployeeList();
   }
 
-  public static void iniatizeEmployeeList() throws Exception {
-    EmployeeType employeType = EmployeeType.HOURLY;
-    for (int i = 0; i < 30; i++) {
-      if (i > 9) {
-        employeType = EmployeeType.SALARIED;
-        if (i > 19) {
-          employeType = EmployeeType.MANAGER;
-        }
-      }
-      IEmployee employee = peopleService.createEmployee("", employeType);
-      EmployeeData.getInstance().addEmployee(employee.getEmployeeId(), employee);
+  public static void initializeEmployeeList() throws Exception {
+    initializeEmployees(EmployeeType.HOURLY);
+    initializeEmployees(EmployeeType.SALARIED);
+    initializeEmployees(EmployeeType.MANAGER);
+  }
+
+  private static void initializeEmployees(EmployeeType employeeType) throws Exception {
+    for (int i = 1; i <= 10; i++) {
+      IEmployee employee = peopleService.createEmployee(employeeType.name() + "-" + i,
+          employeeType);
+      EmployeeData.addEmployee(employee.getEmployeeId(), employee);
     }
   }
 }

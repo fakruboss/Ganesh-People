@@ -24,21 +24,21 @@ public class PeopleController {
     this.peopleService = peopleService;
   }
 
-  @PostMapping("/employee/create")
-  public ResponseEntity<IEmployee> addCard(
+  @PostMapping("/create/employee")
+  public ResponseEntity<IEmployee> createEmployee(
       @RequestBody CreateEmployeeRequest createEmployeeRequest) throws Exception {
     IEmployee employee = peopleService.createEmployee(createEmployeeRequest);
     EmployeeData.getInstance().addEmployee(employee.getEmployeeId(), employee);
     return new ResponseEntity<>(employee, HttpStatus.OK);
   }
 
-  @GetMapping("/employee/{id}")
+  @GetMapping("/get/employee/{id}")
   public ResponseEntity<IEmployee> getEmployee(@PathVariable("id") int id) {
     IEmployee employee = EmployeeData.getInstance().getEmployee(id);
     return new ResponseEntity<>(employee, HttpStatus.OK);
   }
 
-  @GetMapping("/employees")
+  @GetMapping("/list/employees")
   public ResponseEntity<Map<Integer, IEmployee>> getEmployees() {
     Map<Integer, IEmployee> employeeMap = EmployeeData.getInstance().getEmployees();
     return new ResponseEntity<>(employeeMap, HttpStatus.OK);
