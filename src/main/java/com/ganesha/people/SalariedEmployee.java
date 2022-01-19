@@ -6,12 +6,36 @@ public class SalariedEmployee implements Employee {
 
   @Getter
   private final int employeeId;
+  private String name="";
   private static final float MAX_VACATION_DAYS = 15;
-  private float availedVacationDays;
-  private int daysWorked;
+  private float availedVacationDays=MAX_VACATION_DAYS;
+  private int daysWorked=0;
 
   public SalariedEmployee() {
     this.employeeId = EmployeeUtils.generateEmployeeId();
+  }
+
+  @Override
+  public String getEmployeename() {
+    return this.name;
+  }
+  @Override
+  public void setEmployeename(String name) {
+    this.name=name;
+  }
+  @Override
+  public EmployeeType getEmployeeType() {
+    return EmployeeType.SALARIED;
+  }
+
+  @Override
+  public int getWorkedDays() {
+    return this.daysWorked;
+  }
+
+  @Override
+  public float availableVacationDays() {
+    return this.availedVacationDays;
   }
 
   @Override

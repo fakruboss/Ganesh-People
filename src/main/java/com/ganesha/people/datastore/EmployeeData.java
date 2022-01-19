@@ -30,6 +30,10 @@ public class EmployeeData {
     return getDataMap().get(empId);
   }
 
+  public static Map<Integer, Employee>  getEmployees() {
+    return getDataMap();
+  }
+
   public static Map<Integer, Employee> getDataMap() {
     return getInstance().getEmployeeMap();
   }
