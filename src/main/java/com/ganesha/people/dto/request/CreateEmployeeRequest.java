@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CreateEmployeeRequest {
-  String name="";
+
+  String name = "";
   EmployeeType employeeType;
 }

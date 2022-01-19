@@ -1,13 +1,19 @@
 package com.ganesha.people;
 
-public interface Employee {
+public interface IEmployee {
 
   int getEmployeeId();
-  String getEmployeename();
-  void setEmployeename(String name);
+
+  String getEmployeeName();
+
+  void setEmployeeName(String name);
+
   EmployeeType getEmployeeType();
+
   int getWorkedDays();
+
   float availableVacationDays();
+
   void work(int daysWorked) throws Exception;
 
   void takeVacation(float vacationDays) throws Exception;

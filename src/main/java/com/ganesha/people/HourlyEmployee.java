@@ -2,27 +2,27 @@ package com.ganesha.people;
 
 import lombok.Getter;
 
-public class HourlyEmployee implements Employee {
+public class HourlyEmployee implements IEmployee {
 
+  private static final float MAX_VACATION_DAYS = 10;
   @Getter
   private final int employeeId;
-  private String name="";
-  private static final float MAX_VACATION_DAYS = 10;
-  private float availedVacationDays=MAX_VACATION_DAYS;
-  private int daysWorked=0;
+  private String name = "";
+  private float availedVacationDays = MAX_VACATION_DAYS;
+  private int daysWorked = 0;
 
   public HourlyEmployee() {
     this.employeeId = EmployeeUtils.generateEmployeeId();
   }
 
   @Override
-  public String getEmployeename() {
+  public String getEmployeeName() {
     return this.name;
   }
 
   @Override
-  public void setEmployeename(String employeename) {
-     this.name=employeename;
+  public void setEmployeeName(String employeename) {
+    this.name = employeename;
   }
 
   @Override
