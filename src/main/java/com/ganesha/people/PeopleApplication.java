@@ -1,7 +1,6 @@
 package com.ganesha.people;
 
 import com.ganesha.people.datastore.EmployeeData;
-import com.ganesha.people.model.Employee;
 import com.ganesha.people.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -31,7 +30,7 @@ public class PeopleApplication {
           employeType = EmployeeType.MANAGER;
         }
       }
-      Employee employee = peopleService.createEmployee("", employeType);
+      IEmployee employee = peopleService.createEmployee("", employeType);
       EmployeeData.getInstance().addEmployee(employee.getEmployeeId(), employee);
     }
   }

@@ -6,13 +6,12 @@ import com.ganesha.people.IEmployee;
 import com.ganesha.people.Manager;
 import com.ganesha.people.SalariedEmployee;
 import com.ganesha.people.dto.request.CreateEmployeeRequest;
-import com.ganesha.people.model.Employee;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PeopleService {
 
-  public Employee createEmployee(CreateEmployeeRequest createEmployeeRequest) throws Exception {
+  public IEmployee createEmployee(CreateEmployeeRequest createEmployeeRequest) throws Exception {
     IEmployee employee;
     switch (createEmployeeRequest.getEmployeeType()) {
       case HOURLY:
@@ -28,11 +27,13 @@ public class PeopleService {
         // create a custom exception for invalid employee type
         throw new Exception();
     }
-    return new Employee(employee.getEmployeeId(), employee.getEmployeeName(),
-        employee.getEmployeeType(), employee.getWorkedDays(), employee.availableVacationDays());
+//    return new Employee(employee.getEmployeeId(), employee.getEmployeeName(),
+//        employee.getEmployeeType(), employee.getWorkedDays(), employee.availableVacationDays());
+    return employee;
   }
 
-  public Employee createEmployee(String name, EmployeeType employeeType) throws Exception {
+
+  public IEmployee createEmployee(String name, EmployeeType employeeType) throws Exception {
     IEmployee employee;
     switch (employeeType) {
       case HOURLY:
@@ -51,9 +52,8 @@ public class PeopleService {
         // create a custom exception for invalid employee type
         throw new Exception();
     }
-    return new Employee(employee.getEmployeeId(), employee.getEmployeeName(),
-        employee.getEmployeeType(), employee.getWorkedDays(), employee.availableVacationDays());
+//    return new Employee(employee.getEmployeeId(), employee.getEmployeeName(),
+//        employee.getEmployeeType(), employee.getWorkedDays(), employee.availableVacationDays());
+    return employee;
   }
-
-
 }

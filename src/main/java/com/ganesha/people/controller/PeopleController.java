@@ -1,8 +1,8 @@
 package com.ganesha.people.controller;
 
+import com.ganesha.people.IEmployee;
 import com.ganesha.people.datastore.EmployeeData;
 import com.ganesha.people.dto.request.CreateEmployeeRequest;
-import com.ganesha.people.model.Employee;
 import com.ganesha.people.service.PeopleService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +25,22 @@ public class PeopleController {
   }
 
   @PostMapping("/employee/create")
-  public ResponseEntity<Employee> addCard(
+  public ResponseEntity<IEmployee> addCard(
       @RequestBody CreateEmployeeRequest createEmployeeRequest) throws Exception {
-    Employee employee = peopleService.createEmployee(createEmployeeRequest);
+    IEmployee employee = peopleService.createEmployee(createEmployeeRequest);
     EmployeeData.getInstance().addEmployee(employee.getEmployeeId(), employee);
     return new ResponseEntity<>(employee, HttpStatus.OK);
   }
 
   @GetMapping("/employee/{id}")
-  public ResponseEntity<Employee> getEmployee(@PathVariable("id") int id) {
-    Employee employee = EmployeeData.getInstance().getEmployee(id);
+  public ResponseEntity<IEmployee> getEmployee(@PathVariable("id") int id) {
+    IEmployee employee = EmployeeData.getInstance().getEmployee(id);
     return new ResponseEntity<>(employee, HttpStatus.OK);
   }
 
   @GetMapping("/employees")
-  public ResponseEntity<Map<Integer, Employee>> getEmployees() {
-    Map<Integer, Employee> employeeMap = EmployeeData.getInstance().getEmployees();
+  public ResponseEntity<Map<Integer, IEmployee>> getEmployees() {
+    Map<Integer, IEmployee> employeeMap = EmployeeData.getInstance().getEmployees();
     return new ResponseEntity<>(employeeMap, HttpStatus.OK);
   }
 }
