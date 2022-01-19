@@ -7,17 +7,17 @@ import com.ganesha.people.Manager;
 import com.ganesha.people.SalariedEmployee;
 import com.ganesha.people.datastore.EmployeeData;
 import com.ganesha.people.dto.request.CreateEmployeeRequest;
+import com.ganesha.people.model.Employee;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PeopleService {
 
-  public IEmployee createEmployee(CreateEmployeeRequest createEmployeeRequest) throws Exception {
+  public Employee createEmployee(CreateEmployeeRequest createEmployeeRequest) throws Exception {
     return createEmployee(createEmployeeRequest.getName(), createEmployeeRequest.getEmployeeType());
   }
 
-
-  public IEmployee createEmployee(String name, EmployeeType employeeType) throws Exception {
+  public Employee createEmployee(String name, EmployeeType employeeType) throws Exception {
     IEmployee employee;
     switch (employeeType) {
       case HOURLY:
@@ -37,7 +37,12 @@ public class PeopleService {
         throw new Exception();
     }
     EmployeeData.addEmployee(employee.getEmployeeId(), employee);
-    return employee;
+    return Employee.builder()
+        .employeeId(employee.getEmployeeId())
+        .name(employee.getEmployeeName())
+        .employeeType(employee.getEmployeeType())
+        .daysWorked(employee.getWorkedDays())
+        .vacationDays(employee.getVacationDays())
+        .build();
   }
-
 }

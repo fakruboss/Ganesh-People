@@ -3,6 +3,7 @@ package com.ganesha.people.controller;
 import com.ganesha.people.IEmployee;
 import com.ganesha.people.datastore.EmployeeData;
 import com.ganesha.people.dto.request.CreateEmployeeRequest;
+import com.ganesha.people.model.Employee;
 import com.ganesha.people.service.PeopleService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class PeopleController {
   }
 
   @PostMapping("/create/employee")
-  public ResponseEntity<IEmployee> createEmployee(
+  public ResponseEntity<Employee> createEmployee(
       @RequestBody CreateEmployeeRequest createEmployeeRequest) throws Exception {
-    IEmployee employee = peopleService.createEmployee(createEmployeeRequest);
+    Employee employee = peopleService.createEmployee(createEmployeeRequest);
     return new ResponseEntity<>(employee, HttpStatus.OK);
   }
 
@@ -44,21 +45,21 @@ public class PeopleController {
     return new ResponseEntity<>(employeeMap, HttpStatus.OK);
   }
 
-  @PostMapping(value = {"/work/{id}", "/work/{id}/{number}"})
+  @PostMapping(value = {"/work/{id}", "/work/{id}"})
   public ResponseEntity<IEmployee> workedDays(
       @PathVariable("id") int id,
-      @RequestParam(value = "number", required = false) String value) throws Exception {
+      @RequestParam(value = "days", required = false) Integer days) throws Exception {
     IEmployee employee = EmployeeData.getEmployee(id);
-    int workdays = value != null ? Integer.parseInt(value) : 1;
+    int workdays = days != null ? days : 1;
     employee.work(workdays);
     return new ResponseEntity<>(employee, HttpStatus.OK);
   }
 
   @PostMapping(value = {"/leave/{id}"})
   public ResponseEntity<IEmployee> leaveDays(@PathVariable("id") int id,
-      @RequestParam(value = "number", required = false) String value) throws Exception {
+      @RequestParam(value = "days", required = false) Float days) throws Exception {
     IEmployee employee = EmployeeData.getEmployee(id);
-    float leaveDays = value != null ? Float.parseFloat(value) : 1;
+    float leaveDays = days != null ? days : 1f;
     employee.takeVacation(leaveDays);
     return new ResponseEntity<>(employee, HttpStatus.OK);
   }

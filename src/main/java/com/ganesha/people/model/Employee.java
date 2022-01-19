@@ -2,8 +2,10 @@ package com.ganesha.people.model;
 
 import com.ganesha.people.EmployeeType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
+@Builder
 @Getter
 @AllArgsConstructor
 public class Employee {
