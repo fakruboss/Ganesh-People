@@ -12,7 +12,7 @@ public interface IEmployee {
 
   int getWorkedDays();
 
-  float availableVacationDays();
+  float getVacationDays();
 
   void work(int daysWorked) throws Exception;
 

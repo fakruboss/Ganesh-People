@@ -13,4 +13,5 @@ public class Employee {
   private EmployeeType employeeType;
   private int daysWorked;
   private float vacationDays;
+
 }
