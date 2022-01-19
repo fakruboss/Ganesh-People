@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CreateEmployeeRequest {
 
-  String name;
-  EmployeeType employeeType;
+    String name;
+    EmployeeType employeeType;
 }

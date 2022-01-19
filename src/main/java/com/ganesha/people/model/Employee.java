@@ -8,10 +8,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Employee {
 
-  private int employeeId;
-  private String name;
-  private EmployeeType employeeType;
-  private int daysWorked;
-  private float vacationDays;
+    private int employeeId;
+    private String name;
+    private EmployeeType employeeType;
+    private int daysWorked;
+    private float vacationDays;
 
 }
